@@ -1,0 +1,25 @@
+{
+  "name": "megawhip-monorepo",
+  "version": "1.0.0",
+  "description": "Catálogo de Chicotes Elétricos Mega Whip - Frontend Vite + Backend APIs Next.js",
+  "scripts": {
+    "dev": "concurrently -n \"API,CLIENT\" -c \"cyan,green\" \"npm run dev:api\" \"npm run dev:client\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:api": "npm --prefix api run dev",
+    "build:client": "npm --prefix client run build",
+    "build:api": "npm --prefix api run build",
+    "build": "npm run build:api && npm run build:client"
+  },
+  "keywords": [
+    "megawhip",
+    "chicotes-eletricos",
+    "vite",
+    "nextjs",
+    "catalogo"
+  ],
+  "author": "Mega Whip",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
