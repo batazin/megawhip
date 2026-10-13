@@ -199,10 +199,11 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="mw-tech-banner-preview" onClick={() => onNavigate('engineering')}>
               <div className="mw-tech-badge-3d">3D Interativo 360°</div>
               <img
-                src="https://megawhip.com.br/wp-content/uploads/2023/07/logo-mw-Cinza-top.webp"
-                alt="Engenharia Mega Whip"
+                src="/images/john-deere-s790.png"
+                alt="Colheitadeira John Deere - Inspeção 3D"
                 className="mw-tech-img"
               />
+              <span className="mw-tech-preview-hint">Clique para inspecionar chicotes em 360°</span>
             </div>
           </div>
         </div>

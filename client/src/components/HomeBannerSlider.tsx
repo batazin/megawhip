@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Cpu, Flame } from 'lucide-react';
 import type { PageRoute } from '../router';
 
+interface SlideStat {
+  giant: string;
+  title: string;
+  desc: string;
+}
+
 interface Slide {
   id: string;
   tag: string;
@@ -14,8 +20,11 @@ interface Slide {
   secondaryBtnText: string;
   secondaryBtnRoute: PageRoute;
   accentColor: string;
-  bgGradient: string;
+  bgImage: string;
   badgeIcon: React.ReactNode;
+  previewTitle: string;
+  previewBadge: string;
+  stats: SlideStat[];
 }
 
 interface HomeBannerSliderProps {
@@ -36,8 +45,14 @@ const SLIDES: Slide[] = [
     secondaryBtnText: 'Atendimento Comercial',
     secondaryBtnRoute: 'contact',
     accentColor: '#7CD450',
-    bgGradient: 'radial-gradient(circle at 80% 30%, rgba(107, 179, 69, 0.18) 0%, transparent 60%), linear-gradient(135deg, #0B0F14 0%, #131A22 100%)',
+    bgImage: '/images/banners/banner-cana.jpg',
     badgeIcon: <Flame size={16} color="#7CD450" />,
+    previewTitle: 'Colhedoras de Cana em Safra 24h',
+    previewBadge: 'Usinas & Safra Severa',
+    stats: [
+      { giant: '125°C', title: 'Resistência Térmica', desc: 'Isolamento antichama' },
+      { giant: 'IP68', title: 'Vedação Deutsch', desc: 'Resistência a poeira e lavagem' },
+    ],
   },
   {
     id: 'graos',
@@ -51,8 +66,14 @@ const SLIDES: Slide[] = [
     secondaryBtnText: 'Inspecionar no Raio-X 3D',
     secondaryBtnRoute: 'engineering',
     accentColor: '#6BB345',
-    bgGradient: 'radial-gradient(circle at 80% 30%, rgba(34, 197, 94, 0.15) 0%, transparent 60%), linear-gradient(135deg, #090D12 0%, #111822 100%)',
+    bgImage: '/images/banners/banner-graos.jpg',
     badgeIcon: <Cpu size={16} color="#6BB345" />,
+    previewTitle: 'Colheitadeiras Axiais de Soja & Grãos',
+    previewBadge: 'Telemetria & Rede CAN',
+    stats: [
+      { giant: 'CAN', title: 'Rede Blindada', desc: 'Zero interferência de sinal' },
+      { giant: 'ISO', title: 'Norma 6722-1', desc: 'Homologação padrão OEM' },
+    ],
   },
   {
     id: 'fabrica',
@@ -65,8 +86,14 @@ const SLIDES: Slide[] = [
     secondaryBtnText: 'Solicitar Cotação em Lote',
     secondaryBtnRoute: 'contact',
     accentColor: '#38BDF8',
-    bgGradient: 'radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 60%), linear-gradient(135deg, #0B0F14 0%, #0F172A 100%)',
+    bgImage: '/images/banners/banner-fabrica.jpg',
     badgeIcon: <ShieldCheck size={16} color="#38BDF8" />,
+    previewTitle: 'Bancada Eletrônica em Botucatu - SP',
+    previewBadge: '100% Produção Nacional',
+    stats: [
+      { giant: '15+', title: 'Anos de Tradição', desc: 'Fabricação de precisão' },
+      { giant: '100%', title: 'Testado em Bancada', desc: 'Garantia de 12 meses' },
+    ],
   },
 ];
 
@@ -91,7 +118,7 @@ export const HomeBannerSlider: React.FC<HomeBannerSliderProps> = ({
 
     timerRef.current = setTimeout(() => {
       nextSlide();
-    }, 6000);
+    }, 6500);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -113,13 +140,26 @@ export const HomeBannerSlider: React.FC<HomeBannerSliderProps> = ({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div
-        className="mw-banner-slide"
-        style={{ background: currentSlide.bgGradient }}
-      >
+      {/* Background Images Crossfade Layer */}
+      <div className="mw-banner-bg-container">
+        {SLIDES.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`mw-banner-bg-item ${idx === currentSlideIndex ? 'active' : ''}`}
+            style={{
+              backgroundImage: `linear-gradient(90deg, rgba(11, 15, 20, 0.95) 0%, rgba(11, 15, 20, 0.88) 45%, rgba(11, 15, 20, 0.35) 75%, rgba(11, 15, 20, 0.65) 100%), url(${slide.bgImage})`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="mw-banner-slide">
         <div className="mw-container mw-banner-slide-content">
           <div className="mw-banner-text-col">
-            <div className="mw-banner-tag-pill">
+            <div
+              className="mw-banner-tag-pill"
+              style={{ color: currentSlide.accentColor, borderColor: `${currentSlide.accentColor}50` }}
+            >
               {currentSlide.badgeIcon}
               <span>{currentSlide.tag}</span>
             </div>
@@ -135,7 +175,7 @@ export const HomeBannerSlider: React.FC<HomeBannerSliderProps> = ({
             <div className="mw-banner-highlights">
               {currentSlide.highlights.map((item, idx) => (
                 <span key={idx} className="mw-banner-highlight-item">
-                  <span className="mw-bullet-check">✓</span>
+                  <span className="mw-bullet-check" style={{ color: currentSlide.accentColor }}>✓</span>
                   {item}
                 </span>
               ))}
@@ -162,20 +202,37 @@ export const HomeBannerSlider: React.FC<HomeBannerSliderProps> = ({
           </div>
 
           <div className="mw-banner-graphic-col">
-            <div className="mw-banner-badge-box">
-              <div className="mw-banner-stat-giant">15+</div>
-              <div className="mw-banner-stat-text">
-                <strong>Anos de Tradição</strong>
-                <span>Fabricação de precisão</span>
+            {/* Visual machine/facility preview card */}
+            <div className="mw-banner-preview-card" onClick={handlePrimaryClick}>
+              <div className="mw-banner-preview-img-wrap">
+                <img
+                  src={currentSlide.bgImage}
+                  alt={currentSlide.previewTitle}
+                  className="mw-banner-preview-img"
+                />
+                <div className="mw-banner-card-badge" style={{ borderColor: `${currentSlide.accentColor}60` }}>
+                  {currentSlide.badgeIcon}
+                  <span>{currentSlide.previewBadge}</span>
+                </div>
+                <div className="mw-banner-card-caption">
+                  <span>{currentSlide.previewTitle}</span>
+                </div>
               </div>
             </div>
 
-            <div className="mw-banner-badge-box">
-              <div className="mw-banner-stat-giant">ISO</div>
-              <div className="mw-banner-stat-text">
-                <strong>Norma 6722-1</strong>
-                <span>Homologação e testes</span>
-              </div>
+            {/* Slide-specific specs */}
+            <div className="mw-banner-stats-row">
+              {currentSlide.stats.map((st, i) => (
+                <div key={i} className="mw-banner-badge-box">
+                  <div className="mw-banner-stat-giant" style={{ color: currentSlide.accentColor }}>
+                    {st.giant}
+                  </div>
+                  <div className="mw-banner-stat-text">
+                    <strong>{st.title}</strong>
+                    <span>{st.desc}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
