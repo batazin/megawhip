@@ -22,6 +22,13 @@ Solução completa desenvolvida para a **Mega Whip Chicotes Elétricos** ([megaw
 - Node.js 18+ (recomendado Node.js 20+)
 - npm instalado
 
+### 0. Instalar as Dependências (Primeira vez)
+Na raiz do projeto (`megawhip`):
+```bash
+npm run install:all
+```
+*(ou instale manualmente com `npm --prefix api install` e `npm --prefix client install`)*
+
 ### 1. Iniciar Tudo com Um Único Comando (API + Catálogo)
 Na raiz do projeto (`megawhip`):
 ```bash

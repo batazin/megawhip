@@ -13,21 +13,14 @@ export const Hero: React.FC<HeroProps> = ({
   onQuickFilter,
 }) => {
   return (
-    <section className="mw-hero">
+    <section id="inicio" className="mw-hero">
       <div className="mw-container">
-        <div className="mw-hero-badge">
-          <Zap size={14} />
-          Tecnologia em Chicotes Elétricos Industriais & Agrícolas
-        </div>
-
         <h1 className="mw-hero-title">
-          Mega <span>Catálogo</span> Especializado em Chicotes Elétricos
+          Engenharia & Catálogo Especializado em <span>Chicotes Elétricos</span>
         </h1>
 
         <p className="mw-hero-subtitle">
-          Fabricação e desenvolvimento há mais de 15 anos usando apenas componentes de grandes fabricantes,
-          certificados e homologados sob a norma técnica <strong>ISO 6722-1</strong> para frentes de corte,
-          plantio e colheita sem paradas imprevistas.
+          Fabricação de chicotes de alta robustez com componentes originais homologados sob norma técnica <strong>ISO 6722-1</strong>. Máxima confiabilidade para frentes de corte, plantio e colheita sem paradas imprevistas.
         </p>
 
         {/* Search bar */}

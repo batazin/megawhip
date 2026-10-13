@@ -8,13 +8,11 @@ export const InstitutionalSections: React.FC = () => {
       <section id="segmentos" className="mw-institutional-section mw-bg-slate-50">
         <div className="mw-container">
           <div className="mw-section-title-wrap">
-            <span className="mw-badge-institutional">Segmentos Industriais</span>
             <h2 className="mw-inst-heading">
               Especialistas em Chicotes para os Segmentos Mais Exigentes
             </h2>
             <p className="mw-inst-lead">
-              A Mega Whip fornece chicotes elétricos de alta robustez com engenharia dedicada para
-              as principais aplicações do agronegócio e maquinário pesado brasileiro.
+              Engenharia dedicada para frentes de operação severa em maquinário pesado e agronegócio.
             </p>
           </div>
 
@@ -123,9 +121,8 @@ export const InstitutionalSections: React.FC = () => {
         <div className="mw-container">
           <div className="mw-about-grid">
             <div>
-              <span className="mw-badge-institutional">Sobre a Mega Whip</span>
-              <h2 className="mw-inst-heading" style={{ textAlign: 'left', marginTop: '10px' }}>
-                15 Anos de Engenharia de Precisão e Compromisso com a Lavoura
+              <h2 className="mw-inst-heading" style={{ textAlign: 'left', marginTop: '0' }}>
+                15 Anos de Engenharia de Precisão e Confiabilidade na Lavoura
               </h2>
               <p className="mw-about-text">
                 Fundada em Botucatu – SP, um dos principais pólos industriais e tecnológicos do interior

@@ -1,25 +1,36 @@
 import React from 'react';
-import { MapPin, Phone, Mail, ShieldCheck, Globe, Share2 } from 'lucide-react';
+import { MapPin, Phone, Mail, ShieldCheck, Globe } from 'lucide-react';
+import type { PageRoute } from '../router';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (route: PageRoute) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const handleNav = (e: React.MouseEvent, route: PageRoute) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(route);
+    }
+  };
+
   return (
-    <footer className="mw-footer">
+    <footer className="mw-footer" id="contato">
       <div className="mw-container">
         <div className="mw-footer-grid">
           {/* Brand Column */}
           <div>
-            <div className="mw-brand">
+            <div
+              className="mw-brand"
+              style={{ cursor: 'pointer' }}
+              onClick={(e) => handleNav(e, 'home')}
+              title="Voltar ao início"
+            >
               <img
                 src="https://megawhip.com.br/wp-content/uploads/2023/07/logo-mw-Cinza-top.webp"
                 alt="Mega Whip Chicotes Elétricos"
                 className="mw-logo-img"
               />
-              <div className="mw-brand-title">
-                <div className="mw-brand-name">
-                  MEGA<span>WHIP</span>
-                </div>
-                <div className="mw-brand-tagline">Chicotes Elétricos</div>
-              </div>
             </div>
 
             <p className="mw-footer-brand-desc">
@@ -29,26 +40,10 @@ export const Footer: React.FC = () => {
             </p>
 
             <div style={{ display: 'flex', gap: '14px', marginTop: '18px', alignItems: 'center' }}>
-              <a
-                href="https://megawhip.com.br"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}
-                aria-label="Website Oficial"
-              >
+              <span style={{ color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
                 <Globe size={16} color="#6BB345" />
-                megawhip.com.br
-              </a>
-              <a
-                href="https://lp.megawhip.com.br/link-bio"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}
-                aria-label="Canais Oficiais"
-              >
-                <Share2 size={16} color="#6BB345" />
-                Redes Sociais
-              </a>
+                Unidade Fabril: Botucatu – SP
+              </span>
             </div>
           </div>
 
@@ -57,33 +52,28 @@ export const Footer: React.FC = () => {
             <h4 className="mw-footer-heading">Segmentos Atendidos</h4>
             <ul className="mw-footer-links">
               <li>
-                <a href="https://megawhip.com.br/chicotes-eletricos-para-maquinas-agricolas/" target="_blank" rel="noreferrer">
-                  Máquinas Agrícolas
+                <a href="/segmentos" onClick={(e) => handleNav(e, 'segments')}>
+                  Usinas de Cana-de-Açúcar
                 </a>
               </li>
               <li>
-                <a href="https://megawhip.com.br/chicotes-eletricos-para-usinas-de-cana-de-acucar/" target="_blank" rel="noreferrer">
-                  Mercado de Cana-de-Açúcar
+                <a href="/segmentos" onClick={(e) => handleNav(e, 'segments')}>
+                  Mercado de Grãos (Soja/Milho)
                 </a>
               </li>
               <li>
-                <a href="https://megawhip.com.br/chicotes-eletricos-para-o-mercado-de-graos/" target="_blank" rel="noreferrer">
-                  Mercado de Grãos
+                <a href="/segmentos" onClick={(e) => handleNav(e, 'segments')}>
+                  Linha Amarela & Construção
                 </a>
               </li>
               <li>
-                <a href="https://megawhip.com.br/chicotes-eletricos-para-o-mercado-de-algodao/" target="_blank" rel="noreferrer">
-                  Mercado de Algodão
+                <a href="/segmentos" onClick={(e) => handleNav(e, 'segments')}>
+                  Concessionárias & Frotas
                 </a>
               </li>
               <li>
-                <a href="https://megawhip.com.br/engenharia-reversa-de-chicotes-eletricos/" target="_blank" rel="noreferrer">
-                  Engenharia Reversa
-                </a>
-              </li>
-              <li>
-                <a href="https://megawhip.com.br/desenvolvimento-de-projetos-oem-para-chicotes-eletricos/" target="_blank" rel="noreferrer">
-                  Projetos OEM Sob Medida
+                <a href="/engenharia-3d" onClick={(e) => handleNav(e, 'engineering')}>
+                  Engenharia & Raio-X 3D
                 </a>
               </li>
             </ul>
@@ -91,26 +81,14 @@ export const Footer: React.FC = () => {
 
           {/* Produtos e Links */}
           <div>
-            <h4 className="mw-footer-heading">Navegação</h4>
+            <h4 className="mw-footer-heading">Navegação Institucional</h4>
             <ul className="mw-footer-links">
-              <li><a href="#catalogo">Catálogo Completo</a></li>
-              <li><a href="#catalogo">Lançamentos</a></li>
-              <li><a href="#catalogo">Pré-vendas</a></li>
-              <li>
-                <a href="https://megawhip.com.br/pecas-de-reposicao-para-chicote-eletrico/" target="_blank" rel="noreferrer">
-                  Peças de Reposição
-                </a>
-              </li>
-              <li>
-                <a href="https://megawhip.com.br/como-identificar-um-produto-genuino-mega-whip/" target="_blank" rel="noreferrer">
-                  Produto Genuíno Mega Whip
-                </a>
-              </li>
-              <li>
-                <a href="https://megawhip.com.br/politica-de-garantia-devolucao-e-troca-dos-produtos/" target="_blank" rel="noreferrer">
-                  Política de Garantia
-                </a>
-              </li>
+              <li><a href="/" onClick={(e) => handleNav(e, 'home')}>Início</a></li>
+              <li><a href="/sobre" onClick={(e) => handleNav(e, 'about')}>Sobre a Empresa</a></li>
+              <li><a href="/catalogo" onClick={(e) => handleNav(e, 'catalog')}>Catálogo de Peças</a></li>
+              <li><a href="/engenharia-3d" onClick={(e) => handleNav(e, 'engineering')}>Engenharia 3D</a></li>
+              <li><a href="/segmentos" onClick={(e) => handleNav(e, 'segments')}>Segmentos</a></li>
+              <li><a href="/contato" onClick={(e) => handleNav(e, 'contact')}>Fale Conosco</a></li>
             </ul>
           </div>
 

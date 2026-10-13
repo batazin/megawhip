@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, Layers, Box, Camera, Sparkles, Info, MessageSquare, Eye, ChevronRight } from 'lucide-react';
+import { Box, Camera, Info, MessageSquare, Eye, ChevronRight, Sparkles, CheckCircle } from 'lucide-react';
 import type { Product } from '../types';
 import type { HarvesterHotspot } from '../types/harvester';
 import { HARVESTER_HOTSPOTS } from '../types/harvester';
@@ -27,20 +27,16 @@ export const InteractiveHarvester: React.FC<InteractiveHarvesterProps> = ({
   const [viewMode, setViewMode] = useState<'3d' | 'photo'>('3d');
 
   return (
-    <section className="mw-harvester-section">
+    <section id="raiox-tecnico" className="mw-harvester-section">
       <div className="mw-container">
         {/* Section Heading */}
         <div className="mw-harvester-header">
-          <div className="mw-section-badge">
-            <Layers size={14} color="#6BB345" />
-            <span>Raio-X Técnico Interativo • John Deere S790</span>
-          </div>
           <h2 className="mw-harvester-title">
-            Onde os <strong>Chicotes Mega Whip</strong> operam na sua colheitadeira?
+            Mapeamento Técnico de <strong>Chicotes na Operação</strong>
           </h2>
           <p className="mw-harvester-desc">
-            Inspecione o modelo 3D em 360° ou a foto real nos pontos de operação dos chicotes elétricos.
-            Clique nos números interativos para visualizar o chicote correspondente e as normas de isolamento.
+            Inspecione o modelo 3D em 360° ou a visualização fotográfica detalhada nos pontos críticos da colheitadeira.
+            Clique nos números para identificar a aplicação, referências técnicas e chicote correspondente.
           </p>
         </div>
 
